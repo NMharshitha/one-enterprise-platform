@@ -1,0 +1,7 @@
+# Build files
+**/target/
+
+# IntelliJ files
+.idea/
+**/.idea/
+*.iml
