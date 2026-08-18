@@ -8,6 +8,7 @@ import org.springframework.web.client.RestClient;
 
 @Service
 public class UserClient {
+
     private final RestClient restClient;
 
     public UserClient(RestClient restClient) {
@@ -16,11 +17,11 @@ public class UserClient {
 
     public UserResponse getUser(Long id) {
         return restClient.get()
-            .uri("/api/users/{id}", id)
-            .retrieve()
-            .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
-                throw new UserNotFoundException("User not found: " + id);
-            })
-            .body(UserResponse.class);
+                .uri("/users/{id}", id)
+                .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, (request, response) -> {
+                    throw new UserNotFoundException("User not found: " + id);
+                })
+                .body(UserResponse.class);
     }
 }
